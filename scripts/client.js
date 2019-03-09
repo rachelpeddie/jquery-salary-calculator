@@ -5,6 +5,7 @@ $(document).ready(readyNow);
 // declare empty array to input new employee vals
 let employeeInfo = [];
 
+
 function readyNow() {
     console.log('jq');
     $('#addToFormButton').on('click', buttonSubmit);
@@ -48,6 +49,7 @@ function addEmployeeToTable() {
     for ( info of employeeInfo ){
         $('#newEmployeeInfo').append(`<tr><td>${info.firstName}</td><td>${info.lastName}</td><td>${info.id}</td><td>${info.title}</td><td>${info.annualSalary}</td></tr>`);
         monthlyCosts();
+        //redCostTotal();
     }
 } // end addEmployeeToTable
 
@@ -73,6 +75,9 @@ function monthlyCosts() {
         $('#updatedCost').empty();
         // replace total cost value with new total cost value
         $('#updatedCost').append(totalMonthlyCost.toFixed(2));
+        if(totalMonthlyCost > 20000){
+            $('#changeBackground').addClass('redBackground');
+        }
     }
     console.log(totalMonthlyCost.toFixed(2));
     return totalMonthlyCost.toFixed(2);
