@@ -57,6 +57,12 @@ function buttonSubmit(event) {
     console.log('Employee info has been added!');
     event.preventDefault();
     addEmployee();
+    // clears input values for next input
+    $('#firstNameInput').val('');
+    $('#lastNameInput').val('');
+    $('#idInput').val('');
+    $('#titleInput').val('');
+    $('#annualSalaryInput').val('');
 } // end buttonSubmit
 
 // use .toFixed() to include two decimals for numbers
