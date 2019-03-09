@@ -30,6 +30,12 @@ th{
     border: 1px solid #7F15FD;
 }
 
+td{
+    height: 30px;
+    border: 1px solid #7F15FD;
+    padding-left: 8px;
+}
+
 #totalMonthly{
     font-weight: bold;
     

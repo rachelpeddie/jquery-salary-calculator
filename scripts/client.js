@@ -41,9 +41,22 @@ function addEmployee() {
     addEmployeeToTable();
 }
 
+// function to append new row with new employee info when called
+function addEmployeeToTable() {
+    let employeeElement = $('#newEmployeeInfo');
+    // empties all existing value
+    employeeElement.empty();
+    // for loop to append all items in array to table
+    for ( info of employeeInfo ){
+        $('#newEmployeeInfo').append(`<tr><td>${info.firstName}</td><td>${info.lastName}</td><td>${info.id}</td><td>${info.title}</td><td>${info.annualSalary}</td></tr>`);
+    }
+} // end addEmployeeToTable
 
+// function to prevent default form clear and run addEmployee function
 function buttonSubmit(event) {
     console.log('Employee info has been added!');
     event.preventDefault();
     addEmployee();
-}
+} // end buttonSubmit
+
+// use .toFixed() to include two decimals for numbers
