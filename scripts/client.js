@@ -69,10 +69,11 @@ function monthlyCosts() {
     let totalMonthlyCost = 0;
     for( let i=0; i<employeeInfo.length; i++){
         totalMonthlyCost += (employeeInfo[i].annualSalary) / 12;
+        // empty total cost value
+        $('#updatedCost').empty();
+        // replace total cost value with new total cost value
+        $('#updatedCost').append(totalMonthlyCost.toFixed(2));
     }
     console.log(totalMonthlyCost.toFixed(2));
     return totalMonthlyCost.toFixed(2);
-    totalCostAppend(); // might not want this here...
-}
-
-// use .splice()
+} // end monthlyCosts
