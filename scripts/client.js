@@ -4,8 +4,6 @@ $(document).ready(readyNow);
 
 // declare empty array to input new employee vals
 let employeeInfo = [];
-// declare variable to hold monthly cost
-// let costMonthly =
 
 function readyNow() {
     console.log('jq');
@@ -49,6 +47,7 @@ function addEmployeeToTable() {
     // for loop to append all items in array to table
     for ( info of employeeInfo ){
         $('#newEmployeeInfo').append(`<tr><td>${info.firstName}</td><td>${info.lastName}</td><td>${info.id}</td><td>${info.title}</td><td>${info.annualSalary}</td></tr>`);
+        monthlyCosts();
     }
 } // end addEmployeeToTable
 
@@ -65,4 +64,15 @@ function buttonSubmit(event) {
     $('#annualSalaryInput').val('');
 } // end buttonSubmit
 
-// use .toFixed() to include two decimals for numbers
+// function to add salaries together and calculate monthly costs
+function monthlyCosts() {
+    let totalMonthlyCost = 0;
+    for( let i=0; i<employeeInfo.length; i++){
+        totalMonthlyCost += (employeeInfo[i].annualSalary) / 12;
+    }
+    console.log(totalMonthlyCost.toFixed(2));
+    return totalMonthlyCost.toFixed(2);
+    totalCostAppend(); // might not want this here...
+}
+
+// use .splice()
