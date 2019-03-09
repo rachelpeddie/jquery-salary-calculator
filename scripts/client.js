@@ -35,10 +35,16 @@ function addEmployee() {
     //create a new employee object with variables
     let newEmployee = new Employee ( employeeFirstName, employeeLastName, employeeId, employeeTitle, employeeAnnualSalary );
 
+    // conditional to require all input fields
+    if (employeeFirstName === '' || employeeLastName === '' || employeeId === '' || employeeTitle === '' || employeeAnnualSalary === ''){
+        alert('We need more info!');
+    }
+
     // push new object to array and log for confirmation
-    employeeInfo.push(newEmployee);
+   else{ employeeInfo.push(newEmployee);
     console.log('New Employee: ', employeeInfo);
     addEmployeeToTable();
+   }
 }
 
 // function to append new row with new employee info when called
@@ -60,11 +66,11 @@ function buttonSubmit(event) {
     event.preventDefault();
     addEmployee();
     // clears input values for next input
-    // $('#firstNameInput').val('');
-    // $('#lastNameInput').val('');
-    // $('#idInput').val('');
-    // $('#titleInput').val('');
-    // $('#annualSalaryInput').val('');
+    $('#firstNameInput').val('');
+    $('#lastNameInput').val('');
+    $('#idInput').val('');
+    $('#titleInput').val('');
+    $('#annualSalaryInput').val('');
 } // end buttonSubmit
 
 // function to delete employee from array 
@@ -83,6 +89,7 @@ function removeEmployee() {
     }
     // call addEmployeeToTable to refresh table info
     addEmployeeToTable();
+    monthlyCosts();
 } // end 
 
 // function to prevent default clear on delete and clear input values, calls removeEmployee
@@ -91,11 +98,11 @@ function buttonDelete(event) {
     event.preventDefault();
     removeEmployee();
     // clears input values for next input
-    // $('#firstNameInput').val('');
-    // $('#lastNameInput').val('');
-    // $('#idInput').val('');
-    // $('#titleInput').val('');
-    // $('#annualSalaryInput').val('');
+    $('#firstNameInput').val('');
+    $('#lastNameInput').val('');
+    $('#idInput').val('');
+    $('#titleInput').val('');
+    $('#annualSalaryInput').val('');
 } // end buttonDelete
 
 
