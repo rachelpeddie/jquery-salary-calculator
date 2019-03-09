@@ -9,6 +9,7 @@ let employeeInfo = [];
 function readyNow() {
     console.log('jq');
     $('#addToFormButton').on('click', buttonSubmit);
+    $('#deleteFormButton').on('click', buttonDelete);
 } // end readyNow
 
 // create a constructor to create new object for each employee
@@ -59,12 +60,44 @@ function buttonSubmit(event) {
     event.preventDefault();
     addEmployee();
     // clears input values for next input
-    $('#firstNameInput').val('');
-    $('#lastNameInput').val('');
-    $('#idInput').val('');
-    $('#titleInput').val('');
-    $('#annualSalaryInput').val('');
+    // $('#firstNameInput').val('');
+    // $('#lastNameInput').val('');
+    // $('#idInput').val('');
+    // $('#titleInput').val('');
+    // $('#annualSalaryInput').val('');
 } // end buttonSubmit
+
+// function to delete employee from array 
+function removeEmployee() {
+    // declared variables equal to input values for legibility
+    let employeeFirstName = $('#firstNameInput').val();
+    let employeeLastName = $('#lastNameInput').val();
+    let employeeId = $('#idInput').val();
+
+    // for loop to find matching values and delete array item if found
+    for (let i=0; i<employeeInfo.length; i++){
+        let employee = employeeInfo[i];
+        if (employeeFirstName === employee.firstName && employeeLastName === employee.lastName || employeeId === employee.id){
+            employeeInfo.splice(i, 1);
+        }
+    }
+    // call addEmployeeToTable to refresh table info
+    addEmployeeToTable();
+} // end 
+
+// function to prevent default clear on delete and clear input values, calls removeEmployee
+function buttonDelete(event) {
+    console.log('Employee info has been deleted!');
+    event.preventDefault();
+    removeEmployee();
+    // clears input values for next input
+    // $('#firstNameInput').val('');
+    // $('#lastNameInput').val('');
+    // $('#idInput').val('');
+    // $('#titleInput').val('');
+    // $('#annualSalaryInput').val('');
+} // end buttonDelete
+
 
 // function to add salaries together and calculate monthly costs
 function monthlyCosts() {
