@@ -15,11 +15,11 @@ function readyNow() {
 // create a constructor to create new object for each employee
 class Employee {
     constructor( firstName, lastName, id, title, annualSalary ){
-    this.firstName = firstName,
-    this.lastName = lastName,
-    this.id = id,
-    this.title = title,
-    this.annualSalary = annualSalary
+        this.firstName = firstName,
+        this.lastName = lastName,
+        this.id = id,
+        this.title = title,
+        this.annualSalary = annualSalary
     }
 } // end Employee class
 
@@ -54,9 +54,14 @@ function addEmployeeToTable() {
     employeeElement.empty();
     // for loop to append all items in array to table
     for ( info of employeeInfo ){
-        $('#newEmployeeInfo').append(`<tr><td>${info.firstName}</td><td>${info.lastName}</td><td>${info.id}</td><td>${info.title}</td><td>${info.annualSalary}</td></tr>`);
+        $('#newEmployeeInfo').append(`<tr>
+            <td>${info.firstName}</td>
+            <td>${info.lastName}</td>
+            <td>${info.id}</td>
+            <td>${info.title}</td>
+            <td>${info.annualSalary}</td>
+        </tr>`);
         monthlyCosts();
-        //redCostTotal();
     }
 } // end addEmployeeToTable
 
@@ -85,11 +90,11 @@ function removeEmployee() {
         let employee = employeeInfo[i];
         if (employeeFirstName === employee.firstName && employeeLastName === employee.lastName || employeeId === employee.id){
             employeeInfo.splice(i, 1);
+            addEmployeeToTable();
+            monthlyCosts();
         }
     }
     // call addEmployeeToTable to refresh table info
-    addEmployeeToTable();
-    monthlyCosts();
 } // end 
 
 // function to prevent default clear on delete and clear input values, calls removeEmployee
@@ -110,13 +115,16 @@ function buttonDelete(event) {
 function monthlyCosts() {
     let totalMonthlyCost = 0;
     for( let i=0; i<employeeInfo.length; i++){
-        totalMonthlyCost += (employeeInfo[i].annualSalary) / 12;
+        totalMonthlyCost += parseInt(employeeInfo[i].annualSalary) / 12;
         // empty total cost value
         $('#updatedCost').empty();
         // replace total cost value with new total cost value
         $('#updatedCost').append(totalMonthlyCost.toFixed(2));
         if(totalMonthlyCost > 20000){
             $('#changeBackground').addClass('redBackground');
+        }
+        else if (totalMonthlyCost < 20000) {
+            $('#changeBackground').removeClass('redBackground');
         }
     }
     console.log(totalMonthlyCost.toFixed(2));
