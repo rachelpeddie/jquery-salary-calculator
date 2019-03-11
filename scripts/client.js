@@ -116,17 +116,20 @@ function monthlyCosts() {
     let totalMonthlyCost = 0;
     for( let i=0; i<employeeInfo.length; i++){
         totalMonthlyCost += parseInt(employeeInfo[i].annualSalary) / 12;
-        // empty total cost value
-        $('#updatedCost').empty();
-        // replace total cost value with new total cost value
-        $('#updatedCost').append(totalMonthlyCost.toFixed(2));
+        // add red background if monthly total exceeds 20000
         if(totalMonthlyCost > 20000){
             $('#changeBackground').addClass('redBackground');
         }
+        // remove red background if monthly total goes back under 20000
         else if (totalMonthlyCost < 20000) {
             $('#changeBackground').removeClass('redBackground');
         }
-    }
+    } // end for loop
+    // empty total cost value
+    $('#updatedCost').empty();
+    // replace total cost value with new total cost value
+    $('#updatedCost').append(totalMonthlyCost.toFixed(2));
+    // test log/return for updated numbers
     console.log(totalMonthlyCost.toFixed(2));
     return totalMonthlyCost.toFixed(2);
 } // end monthlyCosts
