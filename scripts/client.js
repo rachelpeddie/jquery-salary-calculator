@@ -14,12 +14,12 @@ function readyNow() {
 
 // create a constructor to create new object for each employee
 class Employee {
-    constructor( firstName, lastName, id, title, annualSalary ){
+    constructor(firstName, lastName, id, title, annualSalary) {
         this.firstName = firstName,
-        this.lastName = lastName,
-        this.id = id,
-        this.title = title,
-        this.annualSalary = annualSalary
+            this.lastName = lastName,
+            this.id = id,
+            this.title = title,
+            this.annualSalary = annualSalary
     }
 } // end Employee class
 
@@ -31,20 +31,21 @@ function addEmployee() {
     let employeeId = $('#idInput').val();
     let employeeTitle = $('#titleInput').val();
     let employeeAnnualSalary = $('#annualSalaryInput').val();
-    
+
     //create a new employee object with variables
-    let newEmployee = new Employee ( employeeFirstName, employeeLastName, employeeId, employeeTitle, employeeAnnualSalary );
+    let newEmployee = new Employee(employeeFirstName, employeeLastName, employeeId, employeeTitle, employeeAnnualSalary);
 
     // conditional to require all input fields
-    if (employeeFirstName === '' || employeeLastName === '' || employeeId === '' || employeeTitle === '' || employeeAnnualSalary === ''){
+    if (employeeFirstName === '' || employeeLastName === '' || employeeId === '' || employeeTitle === '' || employeeAnnualSalary === '') {
         alert('We need more info!');
     }
 
     // push new object to array and log for confirmation
-   else{ employeeInfo.push(newEmployee);
-    console.log('New Employee: ', employeeInfo);
-    addEmployeeToTable();
-   }
+    else {
+        employeeInfo.push(newEmployee);
+        console.log('New Employee: ', employeeInfo);
+        addEmployeeToTable();
+    }
 }
 
 // function to append new row with new employee info when called
@@ -53,7 +54,7 @@ function addEmployeeToTable() {
     // empties all existing value
     employeeElement.empty();
     // for loop to append all items in array to table
-    for ( info of employeeInfo ){
+    for (info of employeeInfo) {
         $('#newEmployeeInfo').append(`<tr>
             <td>${info.firstName}</td>
             <td>${info.lastName}</td>
@@ -86,9 +87,9 @@ function removeEmployee() {
     let employeeId = $('#idInput').val();
 
     // for loop to find matching values and delete array item if found
-    for (let i=0; i<employeeInfo.length; i++){
+    for (let i = 0; i < employeeInfo.length; i++) {
         let employee = employeeInfo[i];
-        if (employeeFirstName === employee.firstName && employeeLastName === employee.lastName || employeeId === employee.id){
+        if (employeeFirstName === employee.firstName && employeeLastName === employee.lastName || employeeId === employee.id) {
             employeeInfo.splice(i, 1);
             addEmployeeToTable();
             monthlyCosts();
@@ -114,10 +115,10 @@ function buttonDelete(event) {
 // function to add salaries together and calculate monthly costs
 function monthlyCosts() {
     let totalMonthlyCost = 0;
-    for( let i=0; i<employeeInfo.length; i++){
+    for (let i = 0; i < employeeInfo.length; i++) {
         totalMonthlyCost += parseInt(employeeInfo[i].annualSalary) / 12;
         // add red background if monthly total exceeds 20000
-        if(totalMonthlyCost > 20000){
+        if (totalMonthlyCost > 20000) {
             $('#changeBackground').addClass('redBackground');
         }
         // remove red background if monthly total goes back under 20000
