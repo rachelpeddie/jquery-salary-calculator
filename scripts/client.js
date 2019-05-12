@@ -134,3 +134,5 @@ function monthlyCosts() {
     console.log(totalMonthlyCost.toFixed(2));
     return totalMonthlyCost.toFixed(2);
 } // end monthlyCosts
+
+// this is the cloned repository test
